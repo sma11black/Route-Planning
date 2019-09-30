@@ -3,7 +3,21 @@
 #
 cmake_minimum_required (VERSION 3.8)
 
+set(CMAKE_CXX_STANDARD 17)
+
 project ("Route Planning")
 
+# set(CMAKE_TOOLCHAIN_FILE "D:/Workspace/VisualStudioProjects/vcpkg/scripts/buildsystems/vcpkg.cmake")
+
+#
+# Locate Project Prerequisites
+#
+find_package(pugixml REQUIRED)
+find_package(io2d REQUIRED)
+find_package(unofficial-cairo)
+find_package(unofficial-graphicsmagick)
+
 # 包含子项目。
-add_subdirectory ("Route Planning")
+set(IO2D_WITHOUT_SAMPLES 1)
+set(IO2D_WITHOUT_TESTS 1)
+add_subdirectory ("src")
