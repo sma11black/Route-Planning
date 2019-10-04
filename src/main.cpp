@@ -54,14 +54,20 @@ int main(int argc, const char **argv)
 			osm_data = std::move(*data);
 	}
 
-	// TODO: Declare floats `start_x`, `start_y`, `end_x`, and `end_y` and get
-	// user input for these values using std::cin. Pass the user input to the
-	// RoutePlanner object below.
-
-
 	///////////////////////////////////////////////////////////////
 	//Part2: A RouteModel object is created to store the OSM data in usable data structures.
 	///////////////////////////////////////////////////////////////
+	// Get user input.
+	float start_x, start_y, end_x, end_y;
+	std::cout << "The map coordinates begin at (0,0) in the lower left corner, and end at (100,100) in the upper right." << "\n";
+	std::cout << "Enter a start x between 0 and 100: ";
+	std::cin >> start_x;
+	std::cout << "Enter a start y between 0 and 100: ";
+	std::cin >> start_y;
+	std::cout << "Enter a end x between 0 and 100: ";
+	std::cin >> end_x;
+	std::cout << "Enter a end y between 0 and 100: ";
+	std::cin >> end_y;
 	// Build Model.
 	RouteModel model{ osm_data };
 
@@ -72,9 +78,13 @@ int main(int argc, const char **argv)
 	// This planner will eventually carry out the A* search on the model data
 	// and store the search results in the RouteModel.
 	///////////////////////////////////////////////////////////////
-	// Perform search and render results.
-	RoutePlanner route_planner{ model, 10, 10, 90, 90 };
+	// For testing:
+	// RoutePlanner route_planner{ model, 10, 10, 90, 90 };
 
+	// Perform search
+	RoutePlanner route_planner{ model, start_x, start_y, end_x, end_y };
+	route_planner.AStarSearch();
+	std::cout << "Distance: " << route_planner.GetDistance() << " meters. \n";
 
 	///////////////////////////////////////////////////////////////
 	//Part4: The RouteModel data is rendered using the IO2D library. Have a look at the video below for a brief overview of this file:
